@@ -23,8 +23,9 @@ books_ = [
   },
   {
   'id': 4,
-  'nm': 'ALAN TURING'
-  'valor' : '
+  'nm': 'ALAN TURING',
+  'valor' : '59,99',
+  'autor':'ALAN TURING'
   }
 ]
 
@@ -32,11 +33,11 @@ books_ = [
 def books():
   return jsonify(books_)
  
- @app.route("/books_/<int:id>)
- def filter_by_id(id):
-  for livro in books_:
-    if livro.get('id)==id:
-      return jsonify(livro)
+@app.route("/books_/<int:id>", methods=['GET'])
+def filter_by_id(id):
+    for livro in books_:
+        if livro.get('id')==id:
+            return jsonify(livro)
       
 @app.route("/books_", methods=['POST'])
 def criar_livro():
